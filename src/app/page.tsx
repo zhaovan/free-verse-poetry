@@ -30,23 +30,18 @@ export default function Home() {
   useEffect(() => {
     function generatePoem() {
       let poem = "";
-      const newLines = lines.toSorted(
+      const newLines = [...lines].sort(
         (a, b) => a.startingLine - b.startingLine
       );
       let lastLine = 0;
       let lastLength = 0;
-      console.log(newLines);
 
       let errorsFlag: boolean = false;
 
       newLines.forEach((line) => {
-        console.log(line);
         let whiteSpace;
         const numNewLines = line.startingLine - lastLine;
         const numNewLinesString = "\n".repeat(line.startingLine - lastLine);
-        console.log(numNewLines);
-        console.log(lastLength);
-        console.log(line.columnLine);
 
         if (numNewLines === 0 && lastLength > line.columnLine) {
           setErrors(
