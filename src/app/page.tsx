@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-type PoemLines = {
-  text: string;
-  startingLine: number;
-  columnLine: number;
-};
+// type PoemLines = {
+//   text: string;
+//   startingLine: number;
+//   columnLine: number;
+// };
 
 function hexToRgb(hex: string) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -24,7 +24,7 @@ function rgbToLuminance(r: number, g: number, b: number) {
 }
 
 export default function Home() {
-  const [lines, setLines] = useState<PoemLines[]>([]);
+  const [lines, setLines] = useState<any[]>([]);
   const [poem, setPoem] = useState<string>("");
   const [errors, setErrors] = useState<string>("");
   const [color, setColor] = useState<string>("#ffffff");
@@ -47,9 +47,10 @@ export default function Home() {
   }
 
   function handleInputChange(e: any, idx: number) {
-    const { name, value } = e.target;
+    const { name, value }: { name: string; value: string } = e.target;
     const list = [...lines];
-    list[idx][name] = value;
+    const line = list[idx];
+    line[name] = value;
     setLines(list);
   }
 
